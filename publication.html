@@ -1,0 +1,885 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 11 February 2007), see www.w3.org">
+  <style type="text/css">
+    /* UChicago-inspired color scheme consistent with main page */
+    a {
+      color: #800000; /* UChicago maroon for links */
+      text-decoration: none;
+    }
+    a:focus, a:hover {
+      color: #f09228;
+      text-decoration: none;
+    }
+    body, td, th {
+      font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+    strong {
+      font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    sectionheading {
+      font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #000000;
+    }
+    pageheading {
+      font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+      font-size: 38px;
+      font-weight: 400;
+      color: #000000;
+    }
+    hr {
+      border: 0;
+      height: 2px;
+      background-image: linear-gradient(to right, rgba(128, 0, 0, 0), rgba(128, 0, 0, 0.75), rgba(128, 0, 0, 0));
+    }
+    
+    /* Main container layout */
+    .main-container {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: white;
+      min-height: 100vh;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #800000, #a02020);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      font-weight: 400;
+    }
+    .header p {
+      margin: 10px 0 0 0;
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+    
+    /* Navigation */
+    .nav-container {
+      text-align: center;
+      margin: 20px 0;
+      padding: 0 20px;
+    }
+    .nav-link {
+      display: inline-block;
+      padding: 8px 15px;
+      margin: 0 5px;
+      background-color: #800000;
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .nav-link:hover {
+      background-color: #600000;
+      color: white;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      width: 280px;
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-right: 2px solid #e9ecef;
+      flex-shrink: 0;
+    }
+    
+    .filter-section {
+      margin-bottom: 30px;
+    }
+    
+    .filter-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #800000;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #800000;
+    }
+    
+    .filter-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+    }
+    
+    .filter-item:hover {
+      background-color: #e9ecef;
+    }
+    
+    .filter-checkbox {
+      margin-right: 10px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    
+    .filter-label {
+      font-size: 14px;
+      cursor: pointer;
+      flex: 1;
+    }
+    
+    .filter-count {
+      font-size: 12px;
+      color: #666;
+      background-color: #e9ecef;
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+    
+    /* Main content */
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+    
+    .content-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    .content-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .publication-count {
+      color: #666;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    
+    .sort-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .sort-select {
+      padding: 6px 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    /* Publication styling */
+    .publication {
+      margin-bottom: 25px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .publication:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    
+    .publication.selected {
+      border-left: 5px solid #800000;
+      background: linear-gradient(135deg, #fff8f8, #ffffff);
+      box-shadow: 0 4px 12px rgba(128, 0, 0, 0.15);
+    }
+    
+    .publication.hidden {
+      display: none;
+    }
+    
+    .publication-venue-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background-color: #800000;
+      color: white;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .publication-title {
+      font-weight: 600;
+      font-size: 18px;
+      color: #800000;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    
+    .publication-authors {
+      color: #555;
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .publication-venue {
+      color: #666;
+      font-style: italic;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    
+    .publication-tags {
+      margin-bottom: 15px;
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      margin-right: 6px;
+      margin-bottom: 4px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    
+    .tag.safety-approach {
+      background-color: #e3f2fd;
+      color: #1565c0;
+    }
+    
+    .tag.topic {
+      background-color: #f3e5f5;
+      color: #7b1fa2;
+    }
+    
+    .publication-links {
+      margin-top: 15px;
+    }
+    
+    .publication-link {
+      display: inline-block;
+      padding: 6px 12px;
+      margin-right: 8px;
+      margin-bottom: 4px;
+      background-color: #800000;
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .publication-link:hover {
+      background-color: #600000;
+      color: white;
+      text-decoration: none;
+    }
+    
+    .publication-link.secondary {
+      background-color: #6c757d;
+    }
+    
+    .publication-link.secondary:hover {
+      background-color: #545b62;
+    }
+    
+    /* Special badges */
+    .award-badge {
+      display: inline-block;
+      font-size: 0.85em;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(135deg, #800000, #a02020);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      letter-spacing: 0.02em;
+    }
+    
+    .oral-badge {
+      background: linear-gradient(135deg, #d4a017, #ffd700);
+      color: #333;
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+      color: #666;
+      font-size: 14px;
+    }
+    
+    /* No results message */
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+      font-style: italic;
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #e9ecef;
+      }
+      .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+  </style>
+  <link rel="shortcut icon" href="images/aisecure.jpeg">
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,600,400italic,600italic,300,300italic' rel='stylesheet' type='text/css'>
+  <title>Zhaorun Chen - Publications</title>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <h1>Publications</h1>
+  </div>
+  
+  <!-- Navigation -->
+  <div class="nav-container">
+    <a href="index.html" class="nav-link">← Back to Homepage</a>
+    <a href="https://scholar.google.com/citations?user=UZg5N5UAAAAJ" class="nav-link">Google Scholar</a>
+  </div>
+
+  <div class="main-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="filter-section">
+        <div class="filter-title">Safety Approach</div>
+        <div class="filter-item" onclick="toggleFilter('risk-assessment')">
+          <input type="checkbox" id="risk-assessment" class="filter-checkbox">
+          <label for="risk-assessment" class="filter-label">Risk Assessment</label>
+          <span class="filter-count" id="risk-assessment-count">0</span>
+        </div>
+        <div class="filter-item" onclick="toggleFilter('safety-alignment')">
+          <input type="checkbox" id="safety-alignment" class="filter-checkbox">
+          <label for="safety-alignment" class="filter-label">Safety Alignment</label>
+          <span class="filter-count" id="safety-alignment-count">0</span>
+        </div>
+        <div class="filter-item" onclick="toggleFilter('guardrail')">
+          <input type="checkbox" id="guardrail" class="filter-checkbox">
+          <label for="guardrail" class="filter-label">Guardrail</label>
+          <span class="filter-count" id="guardrail-count">0</span>
+        </div>
+      </div>
+      
+      <div class="filter-section">
+        <div class="filter-title">Topic</div>
+        <div class="filter-item" onclick="toggleFilter('multimodal-safety')">
+          <input type="checkbox" id="multimodal-safety" class="filter-checkbox">
+          <label for="multimodal-safety" class="filter-label">Multimodal Safety</label>
+          <span class="filter-count" id="multimodal-safety-count">0</span>
+        </div>
+        <div class="filter-item" onclick="toggleFilter('agent-safety')">
+          <input type="checkbox" id="agent-safety" class="filter-checkbox">
+          <label for="agent-safety" class="filter-label">Agent Safety</label>
+          <span class="filter-count" id="agent-safety-count">0</span>
+        </div>
+        <div class="filter-item" onclick="toggleFilter('video')">
+          <input type="checkbox" id="video" class="filter-checkbox">
+          <label for="video" class="filter-label">Video</label>
+          <span class="filter-count" id="video-count">0</span>
+        </div>
+        <div class="filter-item" onclick="toggleFilter('evaluation')">
+          <input type="checkbox" id="evaluation" class="filter-checkbox">
+          <label for="evaluation" class="filter-label">Evaluation</label>
+          <span class="filter-count" id="evaluation-count">0</span>
+        </div>
+        <div class="filter-item" onclick="toggleFilter('reinforcement-learning')">
+          <input type="checkbox" id="reinforcement-learning" class="filter-checkbox">
+          <label for="reinforcement-learning" class="filter-label">Reinforcement Learning</label>
+          <span class="filter-count" id="reinforcement-learning-count">0</span>
+        </div>
+      </div>
+      
+      <div class="filter-section">
+        <div class="filter-title">Year</div>
+        <div class="filter-item" onclick="toggleFilter('2025')">
+          <input type="checkbox" id="2025" class="filter-checkbox">
+          <label for="2025" class="filter-label">2025</label>
+          <span class="filter-count" id="2025-count">0</span>
+        </div>
+        <div class="filter-item" onclick="toggleFilter('2024')">
+          <input type="checkbox" id="2024" class="filter-checkbox">
+          <label for="2024" class="filter-label">2024</label>
+          <span class="filter-count" id="2024-count">0</span>
+        </div>
+      </div>
+      
+      <div class="filter-section">
+        <div class="filter-item" onclick="toggleSelected()">
+          <input type="checkbox" id="selected-only" class="filter-checkbox">
+          <label for="selected-only" class="filter-label">Selected Papers Only</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <div class="content-header">
+        <div>
+          <div class="content-title">All Publications</div>
+          <div class="publication-count" id="publication-count">0 publications</div>
+        </div>
+        <div class="sort-container">
+          <label for="sort-select">Sort by:</label>
+          <select id="sort-select" class="sort-select" onchange="sortPublications()">
+            <option value="latest">Latest</option>
+            <option value="oldest">Oldest</option>
+            <option value="title">Title</option>
+          </select>
+        </div>
+      </div>
+      
+      <div id="publications-container">
+        <!-- Selected Publications -->
+        <div class="publication" data-year="2025" data-topic="video">
+          <div class="publication-venue-badge">ICCV 2025</div>
+          <div class="publication-title">Beyond Training: Dynamic Token Merging for Zero-Shot Video Understanding</div>
+          <div class="publication-authors">Zhang, Y., Zhao, Z., <strong>Chen, Z.</strong>, Ding, Z., Yang, X., & Sun, Y.</div>
+          <div class="publication-venue">International Conference on Computer Vision (ICCV 2025), Honolulu, Hawaii, Oct 2025</div>
+          <div class="publication-tags">
+            <span class="tag topic">Video</span>
+          </div>
+          <div class="publication-links">
+            <a href="https://arxiv.org/pdf/2411.14401" class="publication-link">PDF</a>
+          </div>
+        </div>
+
+      <div id="publications-container">
+        <!-- Selected Publications -->
+        <div class="publication selected" data-year="2025" data-safety-approach="guardrail" data-topic="agent-safety">
+          <div class="publication-venue-badge">ICML 2025</div>
+          <div class="publication-title">ShieldAgent: Shielding Agents via Verifiable Safety Policy Reasoning</div>
+          <div class="publication-authors"><strong>Chen, Z.</strong>, Kang, M., & Li, B.</div>
+          <div class="publication-venue">International Conference on Machine Learning (ICML 2025), Vancouver, Canada, July 2025</div>
+          <div class="publication-tags">
+            <span class="tag safety-approach">Guardrail</span>
+            <span class="tag topic">Agent Safety</span>
+          </div>
+          <div class="publication-links">
+            <a href="https://arxiv.org/pdf/2503.22738" class="publication-link">PDF</a>
+            <a href="https://shieldagent-aiguard.github.io/" class="publication-link secondary">Project Page</a>
+            <a href="https://github.com/BillChan226/ShieldAgent" class="publication-link secondary">Code</a>
+          </div>
+        </div>
+        
+        <div class="publication selected" data-year="2025" data-safety-approach="guardrail" data-topic="multimodal-safety,video">
+          <div class="publication-venue-badge">ICLR 2025</div>
+          <div class="publication-title">SafeWatch: An Efficient Safety-Policy Following Video Guardrail Model with Transparent Explanations</div>
+          <div class="publication-authors"><strong>Chen, Z.</strong>, Pinto, F., Pan, M., & Li, B.</div>
+          <div class="publication-venue">International Conference on Learning Representations (ICLR 2025), Singapore, Apr 2025</div>
+          <div class="publication-tags">
+            <span class="tag safety-approach">Guardrail</span>
+            <span class="tag topic">Multimodal Safety</span>
+            <span class="tag topic">Video</span>
+          </div>
+          <div class="publication-links">
+            <a href="https://arxiv.org/pdf/2412.06878" class="publication-link">PDF</a>
+            <a href="https://safewatch-aiguard.github.io/" class="publication-link secondary">Project Page</a>
+            <a href="https://github.com/BillChan226/SafeWatch/" class="publication-link secondary">Code</a>
+          </div>
+        </div>
+        
+        <div class="publication selected" data-year="2025" data-safety-approach="risk-assessment" data-topic="multimodal-safety,evaluation">
+          <div class="publication-venue-badge">ICLR 2025</div>
+          <div class="publication-title">MMDT: Decoding the Trustworthiness and Safety of Multimodal Foundation Models</div>
+          <div class="publication-authors">Xu, C., Zhang, J., <strong>Chen, Z.</strong>, Xie, C., Kang, M., Yuan, Z., Xiong, Z., Zhang, C., Yuan, L., Zeng, Y., Xu, P., Guo, C., Zhou, A., Tan, J. Z., Wang, Z., Xiong, A., Zhao, X., Gai, Y., Pinto, F., Potter, Y., Xiang, Z., Lin, Z., Hendrycks, D., Song, D., & Li, B.</div>
+          <div class="publication-venue">International Conference on Learning Representations (ICLR 2025), Singapore, Apr 2025</div>
+          <div class="publication-tags">
+            <span class="tag safety-approach">Risk Assessment</span>
+            <span class="tag topic">Multimodal Safety</span>
+            <span class="tag topic">Evaluation</span>
+          </div>
+          <div class="publication-links">
+            <a href="#" class="publication-link">PDF</a>
+            <a href="https://mmdecodingtrust.github.io/" class="publication-link secondary">Project Page</a>
+            <a href="https://github.com/AI-secure/MMDT" class="publication-link secondary">Code</a>
+          </div>
+        </div>
+        
+        <div class="publication" data-year="2025" data-safety-approach="safety-alignment" data-topic="multimodal-safety">
+          <div class="publication-venue-badge">ICLR 2025</div>
+          <div class="publication-title">AnyPrefer: An Automatic Framework for Preference Data Synthesis</div>
+          <div class="publication-authors">Zhou, Y., Wang, Z., Wang, T., Xing, S., Xia, P., Li, B., Zheng, K., Zhang, Z., <strong>Chen, Z.</strong>, Zheng, W., Zhang, X., Bansal, C., Zhang, W., Wei, Y., Bansal, M., & Yao, H.</div>
+          <div class="publication-venue">International Conference on Learning Representations (ICLR 2025), Singapore, Apr 2025</div>
+          <div class="publication-tags">
+            <span class="tag safety-approach">Safety Alignment</span>
+            <span class="tag topic">Reinforcement Learning</span>
+          </div>
+          <div class="publication-links">
+            <a href="#" class="publication-link">PDF</a>
+            <a href="#" class="publication-link secondary">Project Page</a>
+            <a href="#" class="publication-link secondary">Code</a>
+          </div>
+        </div>
+        
+        <div class="publication" data-year="2025" data-safety-approach="evaluation" data-topic="multimodal-safety">
+          <div class="publication-venue-badge">ICLR 2025</div>
+          <div class="publication-title">MMIE: Massive Multimodal Interleaved Comprehension Benchmark for Large Vision-Language Models</div>
+          <div class="publication-authors">Xia, P., Han, S., Qiu, S., Zhou, Y., Wang, Z., Zheng, W., <strong>Chen, Z.</strong>, Cui, C., Ding, M., Li, L., Wang, L., & Yao, H.</div>
+          <div class="publication-venue">International Conference on Learning Representations (ICLR 2025), Singapore, Apr 2025</div>
+          <span class="award-badge oral-badge">Oral Presentation</span>
+          <div class="publication-tags">
+            <span class="tag safety-approach">Evaluation</span>
+            <span class="tag topic">Multimodal Safety</span>
+          </div>
+          <div class="publication-links">
+            <a href="https://arxiv.org/pdf/2410.10139" class="publication-link">PDF</a>
+            <a href="https://mmie-bench.github.io/" class="publication-link secondary">Project Page</a>
+            <a href="https://github.com/Lillianwei-h/MMIE" class="publication-link secondary">Code</a>
+          </div>
+        </div>
+        
+        <div class="publication" data-year="2025" data-safety-approach="safety-alignment" data-topic="multimodal-safety">
+          <div class="publication-venue-badge">ICLR 2025</div>
+          <div class="publication-title">Fine-Grained Verifiers: Preference Modeling as Next-token Prediction in Vision-Language Alignment</div>
+          <div class="publication-authors">Cui, C., Zhang, A., Zhou, Y., <strong>Chen, Z.</strong>, Deng, G., Yao, H. and Chua, T.S.</div>
+          <div class="publication-venue">International Conference on Learning Representations (ICLR 2025), Singapore, Apr 2025</div>
+          <div class="publication-tags">
+            <span class="tag safety-approach">Safety Alignment</span>
+            <span class="tag topic">Multimodal Safety</span>
+            <span class="tag topic">Reinforcement Learning</span>
+          </div>
+          <div class="publication-links">
+            <a href="https://arxiv.org/pdf/2410.14148" class="publication-link">PDF</a>
+            <a href="#" class="publication-link secondary">Project Page</a>
+            <a href="#" class="publication-link secondary">Code</a>
+          </div>
+        </div>
+        
+        <div class="publication selected" data-year="2024" data-safety-approach="risk-assessment" data-topic="agent-safety">
+          <div class="publication-venue-badge">NeurIPS 2024</div>
+          <div class="publication-title">AgentPoison: Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases</div>
+          <div class="publication-authors"><strong>Chen, Z.</strong>, Xiang, Z., Xiao, C., Song, D., & Li, B.</div>
+          <div class="publication-venue">Advances in Neural Information Processing Systems (NeurIPS 2024), Vancouver, Canada, Dec 2024</div>
+          <div class="publication-tags">
+            <span class="tag safety-approach">Risk Assessment</span>
+            <span class="tag topic">Agent Safety</span>
+          </div>
+          <div class="publication-links">
+            <a href="https://arxiv.org/pdf/2407.12784" class="publication-link">PDF</a>
+            <a href="https://billchan226.github.io/AgentPoison.html" class="publication-link secondary">Project Page</a>
+            <a href="https://github.com/BillChan226/AgentPoison" class="publication-link secondary">Code</a>
+          </div>
+        </div>
+        
+        <div class="publication" data-year="2024" data-safety-approach="safety-alignment" data-topic="multimodal-safety">
+          <div class="publication-venue-badge">NeurIPS 2024</div>
+          <div class="publication-title">Calibrated Self-rewarding Vision Language Models</div>
+          <div class="publication-authors">Zhou, Y., Fan, Z., Cheng, D., Yang, S., <strong>Chen, Z.</strong>, Cui, C., Wang, X., Li, Y., Zhang, L., & Yao, H.</div>
+          <div class="publication-venue">Advances in Neural Information Processing Systems (NeurIPS 2024), Vancouver, Canada, Dec 2024</div>
+          <div class="publication-tags">
+            <span class="tag safety-approach">Safety Alignment</span>
+            <span class="tag topic">Multimodal Safety</span>
+          </div>
+          <div class="publication-links">
+            <a href="https://arxiv.org/pdf/2405.14622.pdf" class="publication-link">PDF</a>
+            <a href="https://github.com/YiyangZhou/CSR" class="publication-link secondary">Code</a>
+          </div>
+        </div>
+        
+        <div class="publication selected" data-year="2024" data-safety-approach="safety-alignment" data-topic="multimodal-safety">
+          <div class="publication-venue-badge">ICML 2024</div>
+          <div class="publication-title">HALC: Object Hallucination Reduction via Adaptive Focal-Contrast Decoding</div>
+          <div class="publication-authors"><strong>Chen, Z.</strong>, Zhao, Z., Luo, H., Yao, H., Li, B., & Zhou, J.</div>
+          <div class="publication-venue">International Conference on Machine Learning (ICML 2024), Vienna, Austria, July 2024</div>
+          <div class="publication-tags">
+            <span class="tag safety-approach">Safety Alignment</span>
+            <span class="tag topic">Multimodal Safety</span>
+          </div>
+          <div class="publication-links">
+            <a href="https://arxiv.org/pdf/2403.00425.pdf" class="publication-link">PDF</a>
+            <a href="https://billchan226.github.io/projects/halc.html" class="publication-link secondary">Project Page</a>
+            <a href="https://github.com/BillChan226/HALC" class="publication-link secondary">Code</a>
+          </div>
+        </div>
+        
+        <div class="publication" data-year="2024" data-safety-approach="safety-alignment" data-topic="reinforcement-learning">
+          <div class="publication-venue-badge">CoRL 2024</div>
+          <div class="publication-title">EscIRL: Evolving Self-Contrastive IRL for Trajectory Prediction in Autonomous Driving</div>
+          <div class="publication-authors">Wang, S., <strong>Chen, Z.</strong>, Zhao, Z., Mao, C., Zhou, Y., He, J., & Hu, A.S.</div>
+          <div class="publication-venue">Conference on Robot Learning (CoRL 2024), Munich, Germany, Nov 2024</div>
+          <div class="publication-tags">
+            <span class="tag safety-approach">Safety Alignment</span>
+            <span class="tag topic">Reinforcement Learning</span>
+          </div>
+          <div class="publication-links">
+            <a href="https://openreview.net/pdf?id=1IzW0aniyg" class="publication-link">PDF</a>
+            <a href="https://github.com/SiyueWang-CiDi/EscIRL" class="publication-link secondary">Code</a>
+          </div>
+        </div>
+        
+        <div class="publication" data-year="2024" data-safety-approach="safety-alignment" data-topic="">
+          <div class="publication-venue-badge">NAACL 2024</div>
+          <div class="publication-title">AutoPRM: Automating Procedural Supervision for Multi-Step Reasoning via Controllable Question Decomposition</div>
+          <div class="publication-authors"><strong>Chen, Z.</strong>, Zhao, Z., Zhu, Z., Zhang, R., Li, X., Raj, B., & Yao, H.</div>
+          <div class="publication-venue">North American Chapter of the Association for Computational Linguistics (NAACL 2024), Mexico City, Mexico, Jun 2024</div>
+          <div class="publication-tags">
+            <span class="tag safety-approach">Safety Alignment</span>
+          </div>
+          <div class="publication-links">
+            <a href="https://arxiv.org/pdf/2402.11452.pdf" class="publication-link">PDF</a>
+          </div>
+        </div>
+        
+        <div class="publication" data-year="2024" data-safety-approach="safety-alignment" data-topic="reinforcement-learning">
+          <div class="publication-venue-badge">IROS 2024</div>
+          <div class="publication-title">Safe Reinforcement Learning via Hierarchical Adaptive Chance-Constraint Safeguards</div>
+          <div class="publication-authors"><strong>Chen, Z.</strong>, Zhao, Z., He, T., Chen, B., Zhao, X., Gong, L., & Liu C.</div>
+          <div class="publication-venue">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2024), Abu Dhabi, UAE, October 2024</div>
+          <span class="award-badge oral-badge">Oral</span>
+          <div class="publication-tags">
+            <span class="tag safety-approach">Safety Alignment</span>
+            <span class="tag topic">Reinforcement Learning</span>
+          </div>
+          <div class="publication-links">
+            <a href="https://arxiv.org/abs/2310.03379" class="publication-link">PDF</a>
+          </div>
+        </div>
+        
+        <div class="publication" data-year="2024" data-safety-approach="evaluation" data-topic="multimodal-safety,evaluation">
+          <div class="publication-venue-badge">arXiv 2024</div>
+          <div class="publication-title">MJ-Bench: Is Your Multimodal Reward Model Really a Good Judge for Text-to-Image Generation?</div>
+          <div class="publication-authors"><strong>Chen, Z.</strong>, Du, Y., Wen, Z., Zhou, Y., Cui, C., Weng, Z., Tu, H., Wang, C., Tong, Z., Huang, Q., Chen, C., Ye, Q., Zhu, Z., Zhang, Y., Zhou, J., Zhao, Z., Rafailov, R., Finn, C., & Yao, H.</div>
+          <div class="publication-venue">arXiv preprint arXiv:2407.04842, 2024</div>
+          <div class="publication-tags">
+            <span class="tag safety-approach">Evaluation</span>
+            <span class="tag topic">Multimodal Safety</span>
+            <span class="tag topic">Evaluation</span>
+          </div>
+          <div class="publication-links">
+            <a href="https://arxiv.org/pdf/2407.04842" class="publication-link">PDF</a>
+            <a href="https://mj-bench.github.io/" class="publication-link secondary">Project Page</a>
+            <a href="https://github.com/MJ-Bench/MJ-Bench" class="publication-link secondary">Code</a>
+            <a href="https://huggingface.co/MJ-Bench" class="publication-link secondary">HuggingFace</a>
+          </div>
+        </div>
+      </div>
+      
+      <div id="no-results" class="no-results" style="display: none;">
+        <p>No publications match the selected filters.</p>
+      </div>
+      
+      <div class="footer">
+        <p>For the most up-to-date publication list, please visit my <a href="https://scholar.google.com/citations?user=UZg5N5UAAAAJ">Google Scholar profile</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let activeFilters = {
+      'safety-approach': [],
+      'topic': [],
+      'year': [],
+      'selected-only': false
+    };
+
+    function toggleFilter(filterId) {
+      const checkbox = document.getElementById(filterId);
+      const isChecked = !checkbox.checked;
+      checkbox.checked = isChecked;
+      
+      if (filterId === 'selected-only') {
+        activeFilters['selected-only'] = isChecked;
+      } else {
+        let filterType;
+        if (['risk-assessment', 'safety-alignment', 'guardrail'].includes(filterId)) {
+          filterType = 'safety-approach';
+        } else if (['2024', '2025'].includes(filterId)) {
+          filterType = 'year';
+        } else {
+          filterType = 'topic';
+        }
+        
+        if (isChecked) {
+          if (!activeFilters[filterType].includes(filterId)) {
+            activeFilters[filterType].push(filterId);
+          }
+        } else {
+          activeFilters[filterType] = activeFilters[filterType].filter(f => f !== filterId);
+        }
+      }
+      
+      filterPublications();
+    }
+
+    function filterPublications() {
+      const publications = document.querySelectorAll('.publication');
+      let visibleCount = 0;
+      
+      publications.forEach(pub => {
+        let isVisible = true;
+        
+        // Check safety approach filter
+        if (activeFilters['safety-approach'].length > 0) {
+          const pubSafetyApproach = pub.getAttribute('data-safety-approach');
+          const hasMatchingSafetyApproach = activeFilters['safety-approach'].some(filter => 
+            pubSafetyApproach && pubSafetyApproach.includes(filter)
+          );
+          if (!hasMatchingSafetyApproach) isVisible = false;
+        }
+        
+        // Check topic filter
+        if (activeFilters['topic'].length > 0) {
+          const pubTopics = pub.getAttribute('data-topic');
+          const hasMatchingTopic = activeFilters['topic'].some(filter => 
+            pubTopics && pubTopics.includes(filter)
+          );
+          if (!hasMatchingTopic) isVisible = false;
+        }
+        
+        // Check year filter
+        if (activeFilters['year'].length > 0) {
+          const pubYear = pub.getAttribute('data-year');
+          const hasMatchingYear = activeFilters['year'].includes(pubYear);
+          if (!hasMatchingYear) isVisible = false;
+        }
+        
+        // Check selected only filter
+        if (activeFilters['selected-only']) {
+          if (!pub.classList.contains('selected')) isVisible = false;
+        }
+        
+        if (isVisible) {
+          pub.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          pub.classList.add('hidden');
+        }
+      });
+      
+      // Update publication count
+      document.getElementById('publication-count').textContent = `${visibleCount} publications`;
+      
+      // Show/hide no results message
+      const noResults = document.getElementById('no-results');
+      if (visibleCount === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+      
+      updateFilterCounts();
+      // Re-sort publications after filtering
+      sortPublications();
+    }
+
+    function updateFilterCounts() {
+      const publications = document.querySelectorAll('.publication');
+      const counts = {};
+      
+      // Initialize counts
+      ['risk-assessment', 'safety-alignment', 'guardrail', 'multimodal-safety', 'agent-safety', 'video', 'evaluation', 'reinforcement-learning', '2024', '2025'].forEach(filter => {
+        counts[filter] = 0;
+      });
+      
+      publications.forEach(pub => {
+        const safetyApproach = pub.getAttribute('data-safety-approach');
+        const topics = pub.getAttribute('data-topic');
+        const year = pub.getAttribute('data-year');
+        
+        if (safetyApproach) {
+          safetyApproach.split(',').forEach(approach => {
+            const key = approach.trim();
+            if (counts.hasOwnProperty(key)) counts[key]++;
+          });
+        }
+        
+        if (topics) {
+          topics.split(',').forEach(topic => {
+            const key = topic.trim();
+            if (counts.hasOwnProperty(key)) counts[key]++;
+          });
+        }
+        
+        if (year && counts.hasOwnProperty(year)) {
+          counts[year]++;
+        }
+      });
+      
+      // Update count displays
+      Object.keys(counts).forEach(filter => {
+        const countElement = document.getElementById(filter + '-count');
+        if (countElement) {
+          countElement.textContent = counts[filter];
+        }
+      });
+    }
+
+    function sortPublications() {
+      const container = document.getElementById('publications-container');
+      const publications = Array.from(container.querySelectorAll('.publication:not(.hidden)'));
+      
+      // Always sort with selected papers first, then by year (latest first)
+      publications.sort((a, b) => {
+        const aSelected = a.classList.contains('selected');
+        const bSelected = b.classList.contains('selected');
+        
+        // If one is selected and the other isn't, selected comes first
+        if (aSelected && !bSelected) return -1;
+        if (!aSelected && bSelected) return 1;
+        
+        // If both are selected or both are not selected, sort by year (latest first)
+        const aYear = parseInt(a.getAttribute('data-year'));
+        const bYear = parseInt(b.getAttribute('data-year'));
+        return bYear - aYear;
+      });
+      
+      // Remove all publications from container
+      publications.forEach(pub => {
+        if (pub.parentNode) {
+          pub.parentNode.removeChild(pub);
+        }
+      });
+      
+      // Re-add them in sorted order
+      publications.forEach(pub => container.appendChild(pub));
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+      updateFilterCounts();
+      filterPublications();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="AgentPoison: Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases">
+  <meta property="og:title" content="AgentPoison: Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases"/>
+  <meta property="og:description" content="arxiv 2024"/>
+  <meta property="og:url" content="https://billchan226.github.io/AgentPoison.html"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="images/agentpoison/agentpoison_logo.jpg" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="AgentPoison: Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases">
+  <meta name="twitter:description" content="arxiv 2024">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="/images/agentpoison/agentpoison_logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="LLM Agent, RAG, Red-teaming LLMs, Trustworthy LLM Agent">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>AgentPoison: Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases</title>
+  <link rel="icon" type="image/x-icon" href="/images/agentpoison/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+  <!-- <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bootstrap4.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script> -->
+
+  <link rel="stylesheet" href="/static/css/bulma.min.css">
+  <link rel="stylesheet" href="/static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="/static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="/static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="/static/css/index.css">
+
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script> -->
+<!-- 
+  <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bootstrap4.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
+
+  <script src="/static/js/benmark_table.js" type="module"></script> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="/static/js/fontawesome.all.min.js"></script>
+  <script src="/static/js/bulma-carousel.min.js"></script>
+  <script src="/static/js/bulma-slider.min.js"></script>
+  <script src="/static/js/index.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div style="display: flex; align-items: center; justify-content: center;">
+              <!-- Logo image -->
+              <img src="/images/agentpoison/agentpoison_logo.jpg" alt="Logo" style="margin-right: -20px; width: auto; height: 140px;"> <!-- Adjust the src, height, and margin-right as needed -->
+              <!-- Title -->
+              <h1 class="title is-1 publication-title" style="font-size: 45px;">AgentPoison: Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases</h1>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://billchan226.github.io/" target="_blank">Zhaorun Chen</a><sup>1</sup>,</span>
+                <span class="author-block">
+                  <a href="https://zhenxianglance.github.io/" target="_blank">Zhen Xiang</a><sup>2</sup>,</span>
+                  <span class="author-block">
+                    <a href="https://xiaocw11.github.io/" target="_blank">Chaowei Xiao</a><sup>3</sup>,</span>
+                  <span class="author-block">
+                    <a href="https://dawnsong.io/" target="_blank">Dawn Song</a><sup>4</sup>,</span>
+                  <span class="author-block">
+                    <a href="https://aisecure.github.io/" target="_blank">Bo Li</a><sup>1,2</sup></span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>1</sup>University of Chicago,</span>
+                    <span class="author-block"><sup>2</sup>University of Illinois, Urbana-Champaign,</span><br>
+                    <span class="author-block"><sup>3</sup>University of Wisconsin, Madison</span>
+                    <span class="author-block"><sup>4</sup>University of California, Berkeley</span>
+                    <span class="eql-cntrb"><small><br><a
+                                href="mailto:billchandler0226@gmail.com">zhaorun@uchicago.edu</a>, <a
+                                href="mailto:zhuokai@uchicago.edu">bol@uchicago.edu</a></small></span>
+                  </div>
+
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/2407.12784" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <!-- ArXiv abstract Link -->
+                    <!-- <span class="link-block">
+                      <a href="https://arxiv.org/abs/2403.00425" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span> -->
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/BillChan226/AgentPoison" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                  <!-- Dataset Link -->
+                  <span class="link-block">
+                    <a href="https://drive.google.com/drive/folders/1WNJlgEZA3El6PNudK_onP7dThMXCY60K" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fa fa-database"></i>
+                    </span>
+                    <span>Dataset</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://huggingface.co/Zhaorun/LLaMA-2-Agent-Driver-Motion-Planner"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <svg width="800px" height="800px" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet"><ellipse fill="#F4900C" cx="33.5" cy="14.5" rx="2.5" ry="3.5"></ellipse><ellipse fill="#F4900C" cx="2.5" cy="14.5" rx="2.5" ry="3.5"></ellipse><path fill="#FFAC33" d="M34 19a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v9zM7 19a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v9z"></path><path fill="#FFCC4D" d="M28 5c0 2.761-4.478 4-10 4C12.477 9 8 7.761 8 5s4.477-5 10-5c5.522 0 10 2.239 10 5z"></path><path fill="#F4900C" d="M25 4.083C25 5.694 21.865 7 18 7c-3.866 0-7-1.306-7-2.917c0-1.611 3.134-2.917 7-2.917c3.865 0 7 1.306 7 2.917z"></path><path fill="#269" d="M30 5.5C30 6.881 28.881 7 27.5 7h-19C7.119 7 6 6.881 6 5.5S7.119 3 8.5 3h19A2.5 2.5 0 0 1 30 5.5z"></path><path fill="#55ACEE" d="M30 6H6a2 2 0 0 0-2 2v26h28V8a2 2 0 0 0-2-2z"></path><path fill="#3B88C3" d="M35 33v-1a2 2 0 0 0-2-2H22.071l-3.364 3.364a.999.999 0 0 1-1.414 0L13.929 30H3a2 2 0 0 0-2 2v1c0 1.104-.104 2 1 2h32c1.104 0 1-.896 1-2z"></path><circle fill="#FFF" cx="24.5" cy="14.5" r="4.5"></circle><circle fill="#DD2E44" cx="24.5" cy="14.5" r="2.721"></circle><circle fill="#FFF" cx="11.5" cy="14.5" r="4.5"></circle><path fill="#F5F8FA" d="M29 25.5a2.5 2.5 0 0 1-2.5 2.5h-17a2.5 2.5 0 1 1 0-5h17a2.5 2.5 0 0 1 2.5 2.5z"></path><path fill="#CCD6DD" d="M17 23h2v5h-2zm-5 0h2v5h-2zm10 0h2v5h-2zM7 25.5a2.5 2.5 0 0 0 2 2.45v-4.9a2.5 2.5 0 0 0-2 2.45zm20-2.45v4.899a2.5 2.5 0 0 0 0-4.899z"></path><circle fill="#DD2E44" cx="11.5" cy="14.5" r="2.721"></circle></svg>
+                    </span>
+                    <span>Model</span>
+                  </a>
+                </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- News -->
+<section class="section hero" style="background-color: #ffd50069;"> <!-- Light orange background -->
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full"> <!-- Expand the width to full column -->
+        <h2 class="title is-3 has-text-centered">News</h2>
+        <div class="content has-text-justified">
+          <ul>
+            <li><b style="color: #00f1a9;">[Oct., 2024]</b> 🎉 We present AgentPoison at Prof. Zhen Xiang's class at UGA!</li>
+            <li><b style="color: #f80000;">[Sept., 2024]</b> 🎉 AgentPoison is accepted at <b>NeurIPS 2024</b>!</li>
+            <li><b style="color: #2196F3;">[Sept., 2024]</b> 🎉 We present AgentPoison at Prof. Jiliang Tang's group at MSU!</li>
+          </ul>         
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- News -->
+
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            LLM agents have demonstrated remarkable performance across various applications, primarily due to their advanced capabilities in reasoning, utilizing external knowledge and tools, calling APIs, and executing actions to interact with environments. Current agents typically utilize a memory module or a retrieval-augmented generation (RAG) mechanism, retrieving past knowledge and instances with similar embeddings from knowledge bases to inform task planning and execution. However, the reliance on unverified knowledge bases raises significant concerns about their safety and trustworthiness.
+          </p>
+          <p>
+            To uncover such vulnerabilities, we propose a novel red teaming approach <b>AgentPoison</b>, the first backdoor attack targeting generic and RAG-based LLM agents by poisoning their long-term memory or RAG knowledge base. In particular, we form the trigger generation process as a constrained optimization to optimize backdoor triggers by mapping the triggered instances to a unique embedding space, so as to ensure that whenever a user instruction contains the optimized backdoor trigger, the malicious demonstrations are retrieved from the poisoned memory or knowledge base with high probability. In the meantime, benign instructions without the trigger will still maintain normal performance.
+          </p>
+          <p>
+            Unlike conventional backdoor attacks, <b>AgentPoison</b> requires no additional model training or fine-tuning, and the optimized backdoor trigger exhibits superior transferability, in-context coherence, and stealthiness. Extensive experiments demonstrate <b>AgentPoison</b> effectiveness in attacking three types of real-world LLM agents: RAG-based autonomous driving agent, knowledge-intensive QA agent, and healthcare EHRAgent. We inject the poisoning instances into the RAG knowledge base and long-term memories of these agents, respectively, demonstrating the generalization of <b>AgentPoison</b>.
+          </p>
+          <p>
+            Specifically,
+          </p>
+            😈 On each agent, <b>AgentPoison</b> achieves an <b>average attack success rate of ≥ 80%</b> with <b>minimal impact on benign performance (≤ 1%)</b> with a <b>poison rate < 0.1%</b> ! <br/>
+            🔥 <b>Even when we inject only a single poisoning instance with a single-token trigger, AgentPoison achieves high ASR (≥ 60%) !!</b> <br/>
+            👺 <b>AgentPoison</b> achieves <b>high attack transferability</b> across different RAG retrievers and <b>high resilience against various perturbations and defenses</b> !
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3" style="margin-top: 20px;">Method</h2>
+      <img id="tree1" src="/images/agentpoison/method.png" alt="AgentPoison Overview" style="width: 90%; height: auto; display: block; margin: auto;">
+      <div class="content has-text-justified" style="font-size: 16px;">
+        <br/>
+        <p>
+          The key idea of <b>AgentPoison</b> is to inject a small portion of <b>deliberately optimized poison data</b> into the LLM agent's memory or knowledge base such that they can be effectively retrieved to achieve adversarial target even with small poisoning ratio. <br/><br/>
+          <!-- <b>Inputs to AgentPoison</b>: (1) a set of input querries to the LLM agent; (2) the target memory set or knowledge base.<br/><br/> -->
+          🙋 But how to optimize a poisoning trigger that could be selected by the victim LLM agent with high probability even with such small poisoning ratio ? <br/><br/>
+          <b>Iterative Trigger Optimization (Bottom)</b>: We first obtain such an effective trigger via an iterative gradient-guided discrete optimization algorithm. Intuitively, the algorithm aims to map triggered querries into a <b>unique region</b> in the embedding space while <b>increasing their compactness</b>. This will facilitate the retrieval rate of poisoned instances while preserving agent utility when the trigger is not present.<br/><br/>
+          <b>LLM Agent Inference (Top)</b>: After obtaining the trigger, the adversary poisons the LLM agents’ memory or RAG knowledge base with very few malicious demonstrations, which are highly likely to be retrieved when the user instruction contains the optimized trigger. The retrieved demonstrations are our designed spurious, stealthy examples which could effectively result in targeted adversarial actions and catastrophic outcomes. <br/><br/>
+        </p>
+      </div>
+      <img id="tree2" src="/images/agentpoison/method_comparison.png" alt="Method Comparison" style="width: 90%; height: auto; display: block; margin: auto;">
+      <div class="content has-text-justified" style="font-size: 16px;">
+        <br/>
+        <p>
+          We demonstrate the effectiveness of the optimized poisoning triggers by <b>AgentPoison</b> and compare them with that by baseline <a href="https://arxiv.org/abs/2310.19156">corpus poisoning attack (CPA)</a> by visualizing their embedding space. The poisoning instances of CPA are shown as <a style="color:#0733f5;">blue</a> dots in (a); the poisoning instances of AgentPoison during iteration 0, 10, and 15 are shown as <a style="color:#f10b0b;">red</a> dots and the final sampled instances are shown as <a style="color:#0733f5;">blue</a> dots in (b)-(d). By mapping triggered instances to a unique and compact region in the embedding space, <b>AgentPoison</b> effectively retrieves them without affecting other trigger-free instances to maintain benign performance. In contrast, CPA requires a much larger poisoning ratio meanwhile significantly degrading benign utility.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3">Results</h2>
+      <h3 class="title is-4" style="font-size: 18px;">Setup</h3>
+      <div class="content has-text-justified" style="font-size: 16px;">
+        <p>
+          We compare <b>AgentPoison</b> with four baselines, <a href="https://arxiv.org/abs/2307.15043">GCG</a>, <a href="https://arxiv.org/abs/2310.04451">AutoDAN</a>, <a href="https://arxiv.org/abs/2310.19156">CPA</a>, and <a href="https://arxiv.org/abs/2401.12242">BadChain</a>, for three agents, <a href="https://arxiv.org/abs/2311.10813">Agent-Driver</a> for autonomous driving, <a href="https://arxiv.org/abs/2210.03629">ReAct</a> for knowledge-intensive QA, and <a href="https://arxiv.org/html/2401.07128v1">EHRAgent</a> for healthcare record management.<br/>
+          We use the dataset published in the original paper for <a href="https://drive.google.com/drive/folders/1BjCYr0xLTkLDN9DrloGYlerZQC1EiPie">Agent-Driver</a>, <a href="https://allenai.org/data/strategyqa">StrategyQA</a> for ReAct, and <a href="https://github.com/BillChan226/AgentPoison/tree/master/EhrAgent/database">successful trials</a> that we collected ourselves for EHRAgent.
+          We consider four evaluation metrics: <br/>
+          1) attack success rate for retrieval (<b>ASR-r</b>) -- the percentage of test instances where all the retrieved demonstrations from the database are poisoned; <br/>
+          2) attack success rate for the target action (<b>ASR-a</b>) -- the percentage of test instances where the agent generates the target action (e.g., "sudden stop") conditioned on successful retrieval of poisoned instances; <br/>
+          3) End-to-end target attack success rate (<b>ASR-t</b>) -- the percentage of test instances where the agent achieves the final adversarial impact on the environment (e.g. collision), which also depends on the agent itself; <br/>
+          4) benign accuracy (<b>ACC</b>) -- the percentage of test instances with correct action output without the trigger.
+        </p>
+      </div>
+      <h3 class="title is-4" style="font-size: 18px;">Main Result</h3>
+      <img id="tree1" src="/images/agentpoison/main_result.png" alt="Main result" style="width: 80%; height: auto; display: block; margin: auto;">
+      <div class="content has-text-justified" style="font-size: 16px;">
+        <p>
+          Performance of AgentPoison compared with four baselines over ASR-r, ASR-b, ASR-t, ACC on four combinations of LLM agent backbones: GPT3.5 and LLaMA3-70b (Agent-Driver uses a fine-tuned LLaMA3-8b) and retrievers: end-to-end and contrastive-based. Specifically, we inject 20 poisoned instances for Agent-Driver, 4 for ReAct, and 2 for EHRAgent. For ASR, the maximum number in each column is in bold; and for ACC, the number within 1% to the non-attack case is in bold.
+        </p>
+      </div>
+      <h3 class="title is-4" style="font-size: 18px;">Transferability</h3>
+      <img id="tree2" src="/images/agentpoison/transferability.png" alt="Main result" style="width: 80%; height: auto; display: block; margin: auto;">
+      <div class="content has-text-justified" style="font-size: 16px;">
+        <p>
+          Transferability confusion matrix showcasing the performance of the triggers optimized on the source embedder (y-axis) transferring to the target embedder (x-axis) w.r.t. ASR-r (a), ASR-a (b), and ACC (c) on Agent-Driver. We can denote that (1) trigger optimized with <b>AgentPoison</b> generally transfer well across dense retrievers; (2) triggers transfer better among embedders with similar training strategy (i.e. end-to-end (REALM, ORQA); contrastive (DPR, ANCE, BGE)).
+        </p>
+      </div>
+      <h3 class="title is-4" style="font-size: 18px;">Efficiency</h3>
+      <img id="tree3" src="/images/agentpoison/number_study.png" alt="Main result" style="width: 80%; height: auto; display: block; margin: auto;">
+      <div class="content has-text-justified" style="font-size: 16px;">
+        <p>
+          Comparing the performance of <b>AgentPoison</b> with random trigger and CPA w.r.t. the number of poisoned instances in the database (<b>left</b>) (we fix the number of trigger tokens to 4) and the number of tokens in the trigger (<b>right</b>) (we fix the number of poisoned instances to 32). Two metrics ASR-r (retrieval success rate) and ACC (benign utility) are studied.
+        </p>
+      </div>
+      <h3 class="title is-4" style="font-size: 18px;">Robustness</h3>
+      <img id="tree3" src="/images/agentpoison/robustness.png" alt="Main result" style="width: 100%; height: auto; display: block; margin: auto;">
+      <div class="content has-text-justified" style="font-size: 16px;">
+        <p>
+          <b>Left</b>: We assess the resilience of the optimized trigger by studying three types of perturbations on the trigger in the input query while keeping the poisoned instances fixed.<br/>
+           <b>Right</b>: We evaluate the performance of <b>AgentPoison</b> against two types of SOTA defenses, including perplexity filter and query rephrasing.
+        </p>
+      </div>
+      <b>Takeways:</b><br/>
+      <ol style="PADDING-LEFT: 50px; text-align: justify">
+        <li>On all agents, <b>AgentPoison</b> achieves a <b>very high attack success rate of ≥ 80%</b> with <b>minimal impact on benign performance (≤ 1%)</b> with a <b>poison rate < 0.1%</b>.
+        <br/>
+        <li>On all agents, <b>AgentPoison</b> achieves high attack transferability across different RAG retrievers.
+        <br/>
+        <li><b>AgentPoison</b> performs well even when we inject only one instance in the knowledge base with one token in the trigger.
+        <br/>
+        <li><b>AgentPoison</b> is resilient to perturbations in the trigger sequence, achieving a high ASR even when completely changing the trigger sequence, as long as its semantic meaning is preserved.
+        <br/>
+        <li><b>AgentPoison</b> is highly evasive against potential defenses due to its high in-context coherence and readability of the optimzied trigger.
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- 
+<section class="hero teaser" id="leaderboard">
+  <div class="container is-max-desktop">
+      <div class="hero-body">
+          <h2 class="title is-3">AgentPoison</h2>
+          <p>
+              what
+          </p>
+          <br>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="main-results-tab" data-bs-toggle="tab" data-bs-target="#benchmark-table-content" type="button" role="tab" aria-controls="benchmark-table-content" aria-selected="true">Main Result</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="human-table-tab" data-bs-toggle="tab" data-bs-target="#human-table-content" type="button" role="tab" aria-controls="human-table-content" aria-selected="false">Human-Eval</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="alignment-table-tab" data-bs-toggle="tab" data-bs-target="#alignment-table-content" type="button" role="tab" aria-controls="alignment-table-content" aria-selected="false">Alignment</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="safety-table-tab" data-bs-toggle="tab" data-bs-target="#safety-table-content" type="button" role="tab" aria-controls="safety-table-content" aria-selected="false">Safety</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="quality-table-tab" data-bs-toggle="tab" data-bs-target="#quality-table-content" type="button" role="tab" aria-controls="quality-table-content" aria-selected="false">Quality</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="bias-table-tab" data-bs-toggle="tab" data-bs-target="#bias-table-content" type="button" role="tab" aria-controls="bias-table-content" aria-selected="false">Bias</button>
+              </li>
+          </ul>
+
+          <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="benchmark-table-content" role="tabpanel" aria-labelledby="main-results-tab">
+                  <p class="mt-2 px-2">
+                    Performance of <b>AgentPoison</b> compared with four baselines over ASR-r, ASR-b, ASR-t, ACC on four combinations of LLM agent backbones: GPT3.5 and LLaMA3-70b (Agent-Driver uses a fine-tuned LLaMA3-8b) and retrievers: end-to-end and contrastive-based. Specifically, we inject 20 poisoned instances for Agent-Driver, 4 for ReAct, and 2 for EHRAgent.
+                  </p>
+                  <div id="benchmark-table"></div>
+              </div>
+              <div class="tab-pane fade" id="human-table-content" role="tabpanel" aria-labelledby="human-table-tab">
+                  <p class="mt-2 px-2">
+                      Human evaluation result on the generated images from six fine-tuned SD-v1.5 model using the feedback from six multimodal judges, i.e. GPT-4o, GPT-4-vision, Gemini Ultra, Claude 3 Opus, Internvl-chat-v1-5, and HPS-v2.1. Specifically, we consider the following four metrics: ranking over fixed seed (<b>FR</b>), ranking over random seed (<b>RR</b>), average ranking (<b>AR</b>), and average voting (<b>AV</b>).
+                  </p>
+                  <div id="human-table"></div>
+              </div>
+              <div class="tab-pane fade" id="alignment-table-content" role="tabpanel" aria-labelledby="alignment-table-tab">
+                  <p class="mt-2 px-2">
+                      The detailed evaluation result of all multimodal judges on <b>alignment</b> perspective. The feedback are provided in numerical scale of range [0, 10]. Specifically, we study their individual performance over five alignment objectives: object (existence), attribute, action, location, and count.
+                  </p>
+                  <div id="alignment-table"></div>
+              </div>
+              <div class="tab-pane fade" id="safety-table-content" role="tabpanel" aria-labelledby="safety-table-tab">
+                  <p class="mt-2 px-2">
+                      The detailed evaluation result of all multimodal judges on <b>safety</b> perspective. The feedback are provided in numerical scale of range [0, 10]. Specifically, we study their individual performance over two safety objectives: toxicity (crime, shocking, and disgust) and NSFW (evident, evasive, and subtle).
+                  </p>
+                  <div id="safety-table"></div>
+              </div>
+              <div class="tab-pane fade" id="quality-table-content" role="tabpanel" aria-labelledby="quality-table-tab">
+                  <p class="mt-2 px-2">
+                      The detailed evaluation result of all multimodal judges on <b>quality</b> perspective. The feedback is provided in numerical scale of range [0, 10]. Specifically, we study their individual performance over two quality objectives: distortion (including human face, human limb, and object), and blurry (including defocused and motion).
+                  </p>
+                  <div id="quality-table"></div>
+              </div>
+              <div class="tab-pane fade" id="bias-table-content" role="tabpanel" aria-labelledby="bias-table-tab">
+                  <p class="mt-2 px-2">
+                      The detailed evaluation result of all multimodal judges on <b>bias</b> perspective. The feedback are provided in different scales including numerical scales ([0-5], and [0-10]) and Likert scale: [Extremely Poor, Poor, Average, Good, Outstanding]. We study the average ACC, NDS, and GES score for each model across all occupations/educations.
+                  </p>
+                  <div id="bias-table"></div>
+              </div>
+          </div>
+          <br>
+          <h2 class="subtitle">
+              Please refer to our <a href="https://huggingface.co/spaces/MJ-Bench/MJ-Bench-Leaderboard">Huggingface Leaderboard</a> to add your model to the leaderboard.
+          </h2>
+      </div>
+  </div>
+</section> -->
+
+<!-- Image carousel -->
+<!-- <section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+       <div class="item"> -->
+        <!-- Your image here -->
+        <!-- <img src="/static/images/carousel1.jpg" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+          First image description.
+        </h2>
+      </div>
+      <div class="item"> -->
+        <!-- Your image here -->
+        <!-- <img src="/static/images/carousel2.jpg" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+          Second image description.
+        </h2>
+      </div>
+      <div class="item"> -->
+        <!-- Your image here -->
+        <!-- <img src="/static/images/carousel3.jpg" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+         Third image description.
+       </h2>
+     </div>
+     <div class="item"> -->
+      <!-- Your image here -->
+      <!-- <img src="/static/images/carousel4.jpg" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+        Fourth image description.
+      </h2>
+    </div>
+  </div>
+</div>
+</div>
+</section> -->
+<!-- End image carousel -->
+
+
+
+
+<!-- Youtube video -->
+<!-- <section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container"> -->
+      <!-- Paper video. -->
+      <!-- <h2 class="title is-3">Video Presentation</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          
+          <div class="publication-video"> -->
+            <!-- Youtube embed code here -->
+            <!-- <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- End youtube video -->
+
+
+<!-- Video carousel -->
+<!-- <section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Another Carousel</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <video poster="" id="video1" autoplay controls muted loop height="100%"> -->
+            <!-- Your video file here -->
+            <!-- <source src="/static/videos/carousel1.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%"> -->
+            <!-- Your video file here -->
+            <!-- <source src="/static/videos/carousel2.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\ -->
+            <!-- Your video file here -->
+            <!-- <source src="/static/videos/carousel3.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- End video carousel -->
+
+
+
+
+
+
+<!-- Paper poster -->
+<!-- <section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">Poster</h2> -->
+
+      <!-- <iframe  src="/static/pdfs/sample.pdf" width="100%" height="550">
+          </iframe>
+        
+      </div>
+    </div>
+  </section> -->
+<!--End paper poster -->
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@misc{chen2024agentpoisonredteamingllmagents,
+        title={AgentPoison: Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases}, 
+        author={Zhaorun Chen and Zhen Xiang and Chaowei Xiao and Dawn Song and Bo Li},
+        year={2024},
+        eprint={2407.12784},
+        archivePrefix={arXiv},
+        primaryClass={cs.LG},
+        url={https://arxiv.org/abs/2407.12784}, 
+  }</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>. This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>

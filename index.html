@@ -1,0 +1,592 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 11 February 2007), see www.w3.org">
+  <style type="text/css">
+  /* Design Modified from: Deepak Pathak, Jon Barron, and Saurabh Gupta. */
+  /* UChicago-inspired color scheme */
+  a {
+  color: #800000; /* UChicago maroon for links */
+  text-decoration:none;
+  }
+  a:focus, a:hover {
+  color: #f09228;
+  text-decoration:none;
+  }
+  body,td,th {
+    font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 400
+  }
+  heading {
+    font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+    font-size: 17px; /* 19 */
+    font-weight: 600 /* 1000 */
+  }
+  hr
+  {
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(128, 0, 0, 0), rgba(128, 0, 0, 0.75), rgba(128, 0, 0, 0)); /* UChicago maroon for horizontal lines */
+  }
+  strong {
+    font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 600 /* 800 */
+  }
+  strongred {
+    font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+    color: #800000; /* UChicago maroon */
+    font-size: 16px
+  }
+  sectionheading {
+    font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #000000; /* Changed from #800000 (maroon) to #000000 (black) */
+  }
+  pageheading {
+    font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: #000000; /* Changed to black for your name */
+  }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
+  .ImageBorder
+  {
+      border-width: 1px;
+      border-color: #800000; /* UChicago maroon */
+  }
+  span.highlight {
+  background-color: #ffffd0;
+  }
+  /* UChicago custom styles */
+  .news-item b {
+    color: #800000; /* Maroon for news dates */
+  }
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  td {
+    padding: 10px;
+  }
+  .paper-title {
+    font-weight: 600;
+    color: #800000; /* Maroon for paper titles */
+  }
+  .profile-box {
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    padding: 15px;
+    border-left: 4px solid #800000; /* Maroon left border */
+  }
+  /* Add this refined news item styling */
+  .news-container {
+    margin-top: 15px;
+  }
+
+  .news-item {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(128, 0, 0, 0.1);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: baseline;
+  }
+
+  .news-date {
+    color: #800000;
+    font-weight: 600;
+    min-width: 80px;
+    margin-right: 8px;
+    font-size: 0.95em;
+  }
+
+  .news-content {
+    flex: 1;
+    font-size: 0.98em;
+    line-height: 1.4;
+  }
+
+  .news-content a {
+    color: #800000;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .news-content a:hover {
+    text-decoration: underline;
+  }
+
+  /* Refined publication button styles */
+  .pub-buttons {
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+
+  .pub-button {
+    display: inline-block;
+    padding: 4px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .pub-button.primary {
+    background-color: #800000;
+    color: white;
+  }
+
+  .pub-button.primary:hover {
+    background-color: #600000;
+    color: white;
+  }
+
+  .pub-button.secondary {
+    background-color: #555;
+    color: white;
+  }
+
+  .pub-button.secondary:hover {
+    background-color: #444;
+    color: white;
+  }
+
+  .pub-button.text {
+    background-color: transparent;
+    color: #444;
+  }
+
+  .pub-button.text:hover {
+    background-color: #f0f0f0;
+    color: #800000;
+  }
+
+  /* Add this to your CSS section in the head */
+  .presentation-badge {
+    display: inline-block;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #800000, #a02020);
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-top: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    letter-spacing: 0.02em;
+  }
+  </style>
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
+  <script type="text/javascript" src="js/hidebib.js"></script>
+  <title>Jiaxin Gao, Wuhan University</title>
+  <meta name="Zhaorun Chen's Homepage" http-equiv="Content-Type" content="Zhaorun Chen's Homepage">
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,600,400italic,600italic,300,300italic' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<table width="1000" border="0" align="center" border="0" cellspacing="0" cellpadding="20">
+  <tr><td>
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+  <p align="center">
+    <pageheading>Jiaxin Gao</pageheading><br>
+    <b>email</b>:&nbsp jiaxingao (at) whu (dot) edu (dot) cn<br>
+    <b>address</b>:&nbsp No.299, Bayi Road, Wuchang District, Wuhan, China, 430072
+  </p>
+
+  <tr>
+    <td width="23%" valign="top" align="center"><a href="images/personal/profile.jpg"><img src="images/personal/profile.jpg" width="80%" style="border-radius:15px"></a>
+    <p align=center>
+    | <a href="data/CV_jiaxingao.pdf">CV</a> |
+    <a href="mailto:jiaxingao@whu.edu.cn">Email</a> |
+    <a href="https://github.com/Xxxxsir">Github</a> |
+    <br/>
+    <!-- | <a href="https://github.com/BillChan226">Github</a> | 
+    <a href="https://www.linkedin.com/in/zhaorun-chen-1793b6226/">LinkedIn</a> | -->
+    <!-- <a href="https://space.bilibili.com/14145636">Bilibili</a> |  -->
+    </p>
+    <p align="center" style="margin-top:-8px;">
+      <iframe
+        id="twitter-widget-0"
+        scrolling="no"
+        frameborder="0"
+        allowtransparency="true"
+        allowfullscreen="true"
+        class="twitter-follow-button twitter-follow-button-rendered"
+        style="position: static; visibility: visible; width: 186px; height: 20px;"
+        title="Twitter Follow Button"
+        src="https://platform.twitter.com/widgets/follow_button.2f70fb173b9000da126c79afe2098f02.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=JiaxinGaoXSIR&amp;show_count=false&amp;show_screen_name=true&amp;size=m&amp;time=1706734206165"
+        data-screen-name=""
+      ></iframe>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </p>
+    
+    </td>
+    <td width="65%" valign="top" align="justify">
+      <p>I am a fourth-year undergraduate student in the <a href="https://nisplab.whu.edu.cn/"> Network Information System Security & Privacy (NIS&P) Lab</a> at the <a href="https://cse.whu.edu.cn/">School of Cyber Science and Engineering</a> at <a href="https://en.whu.edu.cn/">Wuhan University</a> advised by Prof.<a href="https://nisplab.whu.edu.cn/People.htm"> Qian Wang</a>. I am also very fortunate to closely work with Prof. <a href="https://wangrun.github.io/">Run Wang</a> .
+      </p>
+      <!-- <p>Previously, I received my Master degree in <a href="https://engineering.purdue.edu/ECE">Electrical and Computer Engineering</a> at<a href="https://www.purdue.edu/"> Purdue University</a>. Before that, I obtained my Bachelor degree in Automation at <a href="http://en.sjtu.edu.cn"> Shanghai Jiao Tong University</a>, advised by Prof.<a href="https://gaoyue.sjtu.edu.cn"> Yue Gao</a>. -->
+        <p> I did my internship at <a href="https://www.mi.com/global/about/">Xiaomi Intelligent Terminal Security Lab</a> during summer 2024 working with Hainan Lv on research related to antivirus evasion for executable files.</a>.
+        </p>
+        <p>I am expected to receive my Bachelor’s degree in Information Security from <a href="https://en.whu.edu.cn/">Wuhan University</a> in 2026, and I am currently applying for graduate programs primarily in the United States and Canada.
+           <!-- and Master degree at<a href="https://www.purdue.edu/"> Purdue University</a> both on computer engineering. -->
+          <!-- I also work closely with Prof. <a href="https://www.huaxiuyao.io/">Huaxiu Yao</a> at UNC-Chapel Hill and Prof. <a href="https://dawnsong.io/">Dawn Song</a> at UC Berkeley. -->
+        <!-- During 2023 Summer, I interned at <a href="https://cs.unc.edu"> UNC-Chapel Hill</a> advised by Prof.<a href="https://www.huaxiuyao.io/"> Huaxiu Yao</a> and collaborated some wonderful projects with <a href="https://irislab.stanford.edu/people.html"> IRIS Lab</a> hosted by Prof. <a href="https://ai.stanford.edu/~cbfinn/"> Chelsea Finn</a>. -->
+      </p>
+      <!-- <p>My current research interests center on the trustworthy and alignment issue of foundation models (e.g. LLMs) and agents from both a theoretical and application perspective. Specifically, I'm interested in enhancing their trustworthiness via novel algorithms and certificates for various applications (e.g. <b>hallucination mitigation</b>, <b>training & testing-time attack</b>, <b>guardrail models</b>) through incorporating external knowledge sources and LLMs' reasoning capabilities. -->
+        <p>My research aims to promote the safety and reliability of AI as well as build more robust intelligent agent systems. I pursue this goal through two complementary directions: (1) ensuring the security, safety, and fairness of LLM models to strengthen their reliability under adversarial and uncertain conditions, and (2) developing robust and transparent agent interactions grounded in both theoretical principles and empirical evaluation.
+      </p>
+      <!-- <p>I'm currently a research scientist intern at Meta Superintelligence Labs during this summer.
+      </p> -->
+      <!-- <p>Not right now, but one day:) -->
+      <!-- </p> -->
+      <!-- <p><a href="https://billchan226.github.io/publication.html">[Publications]</a> Email: zhaorun [AT] uchicago.edu -->
+      </p>
+    </td>
+  </tr>
+</table>
+
+<!-- <hr/> -->
+<hr/>
+
+<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+  <tr>
+    <td style="padding:2px;width:100%;vertical-align:middle">
+      <heading>News</heading>
+      <div class="news-container">
+        <!-- <div class="news-item">
+          <span class="news-date">[06/2025]</span>
+          <!-- <span class="news-content">🎉 Two papers accepted by <a href="https://iccv.thecvf.com/">ICCV 2025</a>, see you in Hawaii!</span> -->
+        <!-- </div>  -->
+
+        <div class="news-item">
+          <span class="news-date">[10/2025]</span>
+          <span class="news-content">🎉 One first-authored paper released as a preprint on <a href="https://arxiv.org/abs/2510.12462">arXiv </a>!</span>
+        </div>
+
+        <div class="news-item">
+          <span class="news-date">[08/2025]</span>
+          <span class="news-content">🔥I will be attending <a href="https://www.usenix.org/conference/usenixsecurity25">Usenix 2025 </a>in Seattle and am looking forward to connections!</span>
+        </div>
+
+<!--         
+        <div class="news-item">
+          <span class="news-date">[09/2024]</span>
+          <span class="news-content">🎉 Two papers accepted by <a href="https://neurips.cc/">NeurIPS 2024</a>!</span>
+        </div>
+        
+        <div class="news-item">
+          <span class="news-date">[05/2024]</span>
+          <span class="news-content">🎉 One first-authored <a href="https://arxiv.org/pdf/2403.00425.pdf">paper</a> accepted by <a href="https://icml.cc/">ICML 2024</a>!</span>
+        </div> --> 
+        
+        <!-- <div class="news-item" style="border-bottom: none;">
+          <span class="news-date">[02/2024]</span>
+          <span class="news-content">🎉 I've joined <a href="https://aisecure.github.io/">Secure Learning Lab</a> at UChicago as a Ph.D. student advised by Prof. <a href="https://aisecure.github.io/">Bo Li</a>.</span>
+        </div> -->
+      </div>
+    </td>
+  </tr>
+</table>
+
+
+
+<hr/>
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
+  <tr><td><sectionheading>&nbsp;&nbsp;Selected publications </sectionheading></td></tr>
+</table>
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="15">
+<br/>
+
+<tr>
+  <td width="30%" valign="top" align="center">
+    <img src="images/readjudge/llmasjudge.png" 
+         alt="sym" 
+         width="90%"
+         style="padding-top:0px; padding-bottom:0px; border-radius:15px;">
+  </td>
+  
+  <td width="60%" valign="top">
+    <p><a href="https://arxiv.org/abs/2510.12462" id="llmjudge">
+    <heading>Evaluating and Mitigating LLM-as-a-Judge Bias in Communication Systems</heading></a><br>
+    <b>Jiaxin Gao</b>, Chen Chen, Yanwen Jia, Xueluan Gong, Kwok-Yan Lam, Qian Wang<br>
+    ArXiv Preprint, 2025 <br>
+    </p>
+
+    <div class="paper" id="llmjudge">
+      <div class="pub-buttons">
+        <a href="https://arxiv.org/pdf/2510.12462" class="pub-button primary">pdf</a>
+        <a href="https://github.com/Xxxxsir/Score-Judge-Bias" class="pub-button secondary">Code</a>
+        <a href="https://arxiv.org/abs/2510.12462" class="pub-button text">ArXiv</a>
+        <a href="javascript:toggleblock('llmjudge_abs')" class="pub-button text">Abstract</a>
+        <a href="javascript:toggleblock('judge_bib')" class="pub-button text">BibTeX</a>
+        <!-- <a href="https://www.alphaxiv.org/abs/2506.19054" class="pub-button text">alphaxiv</a> -->
+        <!-- <a href="" class="pub-button text">blog</a>  -->
+      </div>
+
+      <p align="justify"> <i id="llmjudge_abs">Large Language Models (LLMs) are increasingly being used to autonomously evaluate the quality of content in communication systems, e.g., to assess responses in telecom customer support chatbots. However, the impartiality of these AI "judges" is not guaranteed, and any biases in their evaluation criteria could skew outcomes and undermine user trust. In this paper, we systematically investigate judgment biases in two LLM-as-a-judge models (i.e., GPT-Judge and JudgeLM) under the point-wise scoring setting, encompassing 11 types of biases that cover both implicit and explicit forms. We observed that state-of-the-art LLM judges demonstrate robustness to biased inputs, generally assigning them lower scores than the corresponding clean samples. Providing a detailed scoring rubric further enhances this robustness. We further found that fine-tuning an LLM on high-scoring yet biased responses can significantly degrade its performance, highlighting the risk of training on biased data. We also discovered that the judged scores correlate with task difficulty: a challenging dataset like GPQA yields lower average scores, whereas an open-ended reasoning dataset (e.g., JudgeLM-val) sees higher average scores. Finally, we proposed four potential mitigation strategies to ensure fair and reliable AI judging in practical communication scenarios.<i></p>
+
+      <p align="justify"><span id="judge_bib" style="display:none;">
+            @misc{gao2025evaluatingmitigatingllmasajudgebias,<br>
+            &nbsp;&nbsp; title={Evaluating and Mitigating LLM-as-a-judge Bias in Communication Systems},<br>
+            &nbsp;&nbsp;author={Jiaxin Gao and Chen Chen and Yanwen Jia and Xueluan Gong and Kwok-Yan Lam and Qian Wang},<br>
+            &nbsp;&nbsp;year={2025},<br>
+            &nbsp;&nbsp;eprint={2510.12462},<br>
+            &nbsp;&nbsp;archivePrefix={arXiv},<br>
+            &nbsp;&nbsp;primaryClass={cs.AI},<br>
+            &nbsp;&nbsp;url={https://arxiv.org/abs/2510.12462},<br>
+            }<br>
+          </span>
+      </p>
+        
+</pre>
+    </div>
+  </td>
+</tr>
+
+
+<tr>
+  <td width="30%" valign="top" align="center">
+    <img src="images/lethe/overview.png" 
+         alt="sym" 
+         width="90%"
+         style="padding-top:0px; padding-bottom:0px; border-radius:15px;">
+  </td>
+  
+  <td width="60%" valign="top">
+    <p><a href="https://arxiv.org/abs/2508.21004" id="lethe">
+    <heading>Lethe: Purifying Backdoored Large Language Models with Knowledge Dilution</heading></a><br>
+    Chen Chen, Yuchen Sun, <b>Jiaxin Gao</b>, Xueluan Gong, Qian Wang, Ziyao Wang, Yongsen Zheng, Kwok-Yan Lam<br>
+    ArXiv Preprint, 2025 <br>
+    </p>
+
+    <div class="paper" id="lethe">
+      <div class="pub-buttons">
+        <a href="https://arxiv.org/pdf/2508.21004" class="pub-button primary">pdf</a>
+        <!-- <a href="https://github.com/Xxxxsir/Score-Judge-Bias" class="pub-button secondary">Code</a> -->
+        <a href="https://arxiv.org/abs/2508.21004" class="pub-button text">ArXiv</a>
+        <a href="javascript:toggleblock('lethe_abs')" class="pub-button text">Abstract</a>
+        <a href="javascript:toggleblock('lethe_bib')" class="pub-button text">BibTeX</a>
+        <!-- <a href="https://www.alphaxiv.org/abs/2506.19054" class="pub-button text">alphaxiv</a> -->
+        <!-- <a href="" class="pub-button text">blog</a>  -->
+      </div>
+
+      <p align="justify"> <i id="lethe_abs">Large language models (LLMs) have seen significant advancements, achieving superior performance in various Natural Language Processing (NLP) tasks. However, they remain vulnerable to backdoor attacks, where models behave normally for standard queries but generate harmful responses or unintended output when specific triggers are activated. Existing backdoor defenses either lack comprehensiveness, focusing on narrow trigger settings, detection-only mechanisms, and limited domains, or fail to withstand advanced scenarios like model-editing-based, multi-trigger, and triggerless attacks. In this paper, we present LETHE, a novel method to eliminate backdoor behaviors from LLMs through knowledge dilution using both internal and external mechanisms. Internally, LETHE leverages a lightweight dataset to train a clean model, which is then merged with the backdoored model to neutralize malicious behaviors by diluting the backdoor impact within the model's parametric memory. Externally, LETHE incorporates benign and semantically relevant evidence into the prompt to distract LLM's attention from backdoor features. Experimental results on classification and generation domains across 5 widely used LLMs demonstrate that LETHE outperforms 8 state-of-the-art defense baselines against 8 backdoor attacks. LETHE reduces the attack success rate of advanced backdoor attacks by up to 98% while maintaining model utility. Furthermore, LETHE has proven to be cost-efficient and robust against adaptive backdoor attacks.<i></p>
+
+        <p align="justify"><span id="lethe_bib" style="display:none;">
+          @misc{chen2025lethepurifyingbackdooredlarge,<br>
+            &nbsp;&nbsp; title={Lethe: Purifying Backdoored Large Language Models with Knowledge Dilution},<br>
+            &nbsp;&nbsp;author={Chen Chen and Yuchen Sun and Jiaxin Gao and Xueluan Gong and Qian Wang and Ziyao Wang and Yongsen Zheng and Kwok-Yan Lam},<br>
+            &nbsp;&nbsp;year={2025},<br>
+            &nbsp;&nbsp;eprint={2508.21004},<br>
+            &nbsp;&nbsp;archivePrefix={arXiv},<br>
+            &nbsp;&nbsp;primaryClass={cs.CL},<br>
+            &nbsp;&nbsp;url={https://arxiv.org/abs/2508.21004},<br>
+            }<br>
+        <span></p>
+    </div>
+  </td>
+</tr>
+
+<tr>
+  <td width="30%" valign="top" align="center">
+    <img src="images/ai2/overview.png" 
+         alt="sym" 
+         width="90%"
+         style="padding-top:0px; padding-bottom:0px; border-radius:15px;">
+  </td>
+  
+  <td width="60%" valign="top">
+    <p><a href="https://arxiv.org/abs/2412.10807" id="ai2">
+    <heading>Towards Action Hijacking of Large Language Model-based Agent</heading></a><br>
+    Yuyang Zhang, Kangjie Chen, <b>Jiaxin Gao</b>, Ronghao Cui, Run Wang, Lina Wang, Tianwei Zhang<br>
+    ArXiv Preprint, 2025 <br>
+    </p>
+
+    <div class="paper" id="ai2">
+      <div class="pub-buttons">
+        <a href="https://arxiv.org/pdf/2508.21004" class="pub-button primary">pdf</a>
+        <!-- <a href="https://github.com/Xxxxsir/Score-Judge-Bias" class="pub-button secondary">Code</a> -->
+        <a href="https://arxiv.org/abs/2412.10807" class="pub-button text">ArXiv</a>
+        <a href="javascript:toggleblock('ai2_abs')" class="pub-button text">Abstract</a>
+        <a href="javascript:toggleblock('ai2_bib')" class="pub-button text">BibTeX</a>
+        <!-- <a href="https://www.alphaxiv.org/abs/2506.19054" class="pub-button text">alphaxiv</a> -->
+        <!-- <a href="" class="pub-button text">blog</a>  -->
+      </div>
+
+      <p align="justify"> <i id="ai2_abs">Recently, applications powered by Large Language Models (LLMs) have made significant strides in tackling complex tasks. By harnessing the advanced reasoning capabilities and extensive knowledge embedded in LLMs, these applications can generate detailed action plans that are subsequently executed by external tools. Furthermore, the integration of retrieval-augmented generation (RAG) enhances performance by incorporating up-to-date, domain-specific knowledge into the planning and execution processes. This approach has seen widespread adoption across various sectors, including healthcare, finance, and software development. Meanwhile, there are also growing concerns regarding the security of LLM-based applications. Researchers have disclosed various attacks, represented by jailbreak and prompt injection, to hijack the output actions of these applications. Existing attacks mainly focus on crafting semantically harmful prompts, and their validity could diminish when security filters are employed. In this paper, we introduce AI, a novel attack to manipulate the action plans of LLM-based applications. Different from existing solutions, the innovation of AI lies in leveraging the knowledge from the application's database to facilitate the construction of malicious but semantically-harmless prompts. To this end, it first collects action-aware knowledge from the victim application. Based on such knowledge, the attacker can generate misleading input, which can mislead the LLM to generate harmful action plans, while bypassing possible detection mechanisms easily. Our evaluations on three real-world applications demonstrate the effectiveness of AI: it achieves an average attack success rate of 84.30% with the best of 99.70%. Besides, it gets an average bypass rate of 92.7% against common safety filters and 59.45% against dedicated defense.<i></p>
+
+        <p align="justify"><span  id="ai2_bib" style="display:none;">
+            @misc{zhang2025actionhijackinglargelanguage,<br>
+            &nbsp;&nbsp; title={Towards Action Hijacking of Large Language Model-based Agent},<br>
+            &nbsp;&nbsp;author={Yuyang Zhang and Kangjie Chen and Jiaxin Gao and Ronghao Cui and Run Wang and Lina Wang and Tianwei Zhang},<br>
+            &nbsp;&nbsp;year={2025},<br>
+            &nbsp;&nbsp;eprint={2412.10807},<br>
+            &nbsp;&nbsp;archivePrefix={arXiv},<br>
+            &nbsp;&nbsp;primaryClass={cs.CR},<br>
+            &nbsp;&nbsp;url={https://arxiv.org/abs/2412.10807},<br>
+            }<br>
+          </span >
+        </p>
+        
+    </div>
+  </td>
+</tr>
+
+
+</table>
+
+
+<hr style="height: 2px; background-color: #800000; margin-top: 30px; margin-bottom: 20px;"/>
+
+<!-- Add these sections right before your footer section (the final hr) -->
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
+  <tr><td><sectionheading>&nbsp;&nbsp;Organizer</sectionheading></td></tr>
+</table>
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="15">
+  <tr>
+    <td style="padding:20px;width:100%;vertical-align:middle">
+      <p>
+      <a href="https://responsible-fm.github.io/">NeurIPS 2025 Workshop on Socially Responsible and Trustworthy Foundation Models (ResponsibleFM)</a>, NeurIPS 2025<br>
+      <a href="https://sites.google.com/view/aia-workshop/">COLM 2025 Workshop on AI Agents: Capabilities and Safety (AIA 2025)</a>, COLM 2025<br>
+      <a href="https://www.llmagentsafetycomp24.com/">The LLM and Agent Safety Competition (CLAS 2024)</a>, NeurIPS 2024<br>
+      </p>
+    </td>
+  </tr>
+</table>
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
+  <tr><td><sectionheading>&nbsp;&nbsp;Reviewer Service</sectionheading></td></tr>
+</table>
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="15">
+  <tr>
+    <td style="padding:20px;width:100%;vertical-align:middle">
+      <b>Area Chair:</b> EMNLP'25<br>
+      <b>Conference Reviewer:</b> NeurIPS'25, ICML'25, ICCV'25, CVPR'25, NeurIPS'24, ICLR'24'25, COLM'24, ARR'24, IROS'24
+    </td>
+  </tr>
+</table>
+
+<hr style="height: 2px; background-color: #800000; margin-top: 30px; margin-bottom: 20px;"/>
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="2">
+    <tr><td><br><p align="right" style="color: #800000;"><font size="1.5">
+    Wuhan University | School of Cyber Science and Engineering<br>
+    Template modified from <a href="https://billchan226.github.io/" style="color: #800000;">Zhaorun Chen</a>
+    </font></p></td></tr>
+</table>
+
+  </td></tr>
+</table>
+
+
+<script xml:space="preserve" language="JavaScript">
+  hideallbibs();
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('material_review_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('ieee_iot_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('ai2_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('lethe_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('llmjudge_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('mjvideo_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('fisao_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('mmie_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('mmdt_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('anyprefer_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('safewatch_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('grape_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('agentpoison_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('csr_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('mjbench_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('escirl_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('halc_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('autoprm_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('acs_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('shieldagent_abs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('guardsetxabs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('autoredteamerabs');
+  </script>
+  <script xml:space="preserve" language="JavaScript">
+    hideblock('dropoutdecodingabs');
+  </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const lazyMedia = document.querySelectorAll(".lazy-media");
+    
+    const lazyLoadMedia = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const media = entry.target;
+          media.src = media.dataset.src;
+          media.classList.add("loaded");
+          observer.unobserve(media);
+        }
+      });
+    };
+  
+    const mediaObserver = new IntersectionObserver(lazyLoadMedia, {
+      root: null,
+      threshold: 0.1
+    });
+  
+    lazyMedia.forEach(media => mediaObserver.observe(media));
+  });
+</script>
+</body>
+
+</html>
