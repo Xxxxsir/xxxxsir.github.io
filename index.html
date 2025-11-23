@@ -172,6 +172,48 @@
     color: #800000;
   }
 
+  .edu-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  }
+
+  .edu-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .edu-logo {
+    width: 26px;               /* 控制 logo 大小 */
+    height: 26px;
+    object-fit: contain;       /* 保持比例缩放 */
+    flex-shrink: 0;            /* 防止被挤压变形 */
+  }
+
+  .edu-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edu-school {
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .edu-detail {
+    font-size: 15px;
+    color: #444;
+  }
+
+  .edu-time {
+    /* font-style: italic; */
+    color: #555;
+    white-space: nowrap;
+    margin-left: 15px;
+  }
+
   /* Add this to your CSS section in the head */
   .presentation-badge {
     display: inline-block;
@@ -205,10 +247,10 @@
   </p>
 
   <tr>
-    <td width="23%" valign="top" align="center"><a href="images/personal/profile.jpg"><img src="images/personal/profile.jpg" width="80%" style="border-radius:15px"></a>
+    <td width="23%" valign="top" align="center"><a href="images/personal/fig.jpg"><img src="images/personal/fig.jpg" width="80%" style="border-radius:15px"></a>
     <p align=center>
-    | <a href="data/CV_jiaxingao.pdf">CV</a> |
-    <a href="mailto:jiaxingao@whu.edu.cn">Email</a> |
+    | <a href="https://scholar.google.com/citations?user=zEtchXUAAAAJ&hl=en">Google Scholar</a> |
+    <a href="https://orcid.org/0009-0006-3686-1234">ORCID</a> |
     <a href="https://github.com/Xxxxsir">Github</a> |
     <br/>
     <!-- | <a href="https://github.com/BillChan226">Github</a> | 
@@ -453,32 +495,62 @@
 <!-- Add these sections right before your footer section (the final hr) -->
 
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
-  <tr><td><sectionheading>&nbsp;&nbsp;Organizer</sectionheading></td></tr>
+  <tr><td><sectionheading>&nbsp;&nbsp;Education and Experience</sectionheading></td></tr>
 </table>
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="15">
   <tr>
     <td style="padding:20px;width:100%;vertical-align:middle">
-      <p>
-      <a href="https://responsible-fm.github.io/">NeurIPS 2025 Workshop on Socially Responsible and Trustworthy Foundation Models (ResponsibleFM)</a>, NeurIPS 2025<br>
-      <a href="https://sites.google.com/view/aia-workshop/">COLM 2025 Workshop on AI Agents: Capabilities and Safety (AIA 2025)</a>, COLM 2025<br>
-      <a href="https://www.llmagentsafetycomp24.com/">The LLM and Agent Safety Competition (CLAS 2024)</a>, NeurIPS 2024<br>
-      </p>
-    </td>
-  </tr>
-</table>
+      <div class="edu-entry">
+        <div class="edu-left">
+          <img src="images/education/whu-logo.png" class="edu-logo" alt="Wuhan University logo">
+          <div class="edu-text">
+            <span class="edu-school"><a href="https://en.whu.edu.cn/">Wuhan University</a></span>
+            <span class="edu-detail">School of Cyber Science and Engineering<br>Bachelor in Info Security</span>
+            <span class="edu-detail">Wuhan, China</span>
+          </div>
+        </div>
+        <span class="edu-time">Aug. 2022 - Present</span>
+      </div>
+
+      <div class="edu-entry">
+        <div class="edu-left">
+          <img src="images/education/xmbg.png" class="edu-logo" alt="Xiaomi logo">
+          <div class="edu-text">
+            <span class="edu-school"><a href="https://www.mi.com/global/about/">Xiaomi</a></span>
+            <span class="edu-detail">Xiaomi Intelligent Terminal Security Lab<br>Security Engineer</span>
+            <span class="edu-detail">Wuhan, China</span>
+          </div>
+        </div>
+        <span class="edu-time">Jul. 2024 - Aug. 2024</span>
+      </div>
+
+      <div class="edu-entry">
+        <div class="edu-left">
+          <img src="images/education/cam.png" class="edu-logo" alt="Cambridge logo">
+          <div class="edu-text">
+            <span class="edu-school"><a href="https://www.cam.ac.uk/">University of Cambridge</a></span>
+            <span class="edu-detail">Visting Student</span>
+            <span class="edu-detail">Cambridge, UK</span>
+          </div>
+        </div>
+        <span class="edu-time">Jan. 2024 - Feb. 2024</span>
+      </div>
+
+      <div class="edu-entry">
+        <div class="edu-left">
+          <img src="images/education/high.png" class="edu-logo" alt="Xinzheng High School logo">
+          <div class="edu-text">
+            <span class="edu-school"><a href="https://baike.baidu.com/item/%E6%96%B0%E9%83%91%E5%B8%82%E7%AC%AC%E4%B8%89%E4%B8%AD%E5%AD%A6/3607569">Xinzheng No. 3 High School</a></span>
+            <span class="edu-detail">High School Diploma</span>
+            <span class="edu-detail">Zhengzhou, China</span>
+            </div>
+          </div>
+          <span class="edu-time">Sep. 2019 - July. 2022</span>
+        </div>
+
 
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
-  <tr><td><sectionheading>&nbsp;&nbsp;Reviewer Service</sectionheading></td></tr>
 </table>
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="15">
-  <tr>
-    <td style="padding:20px;width:100%;vertical-align:middle">
-      <b>Area Chair:</b> EMNLP'25<br>
-      <b>Conference Reviewer:</b> NeurIPS'25, ICML'25, ICCV'25, CVPR'25, NeurIPS'24, ICLR'24'25, COLM'24, ARR'24, IROS'24
-    </td>
-  </tr>
-</table>
-
 <hr style="height: 2px; background-color: #800000; margin-top: 30px; margin-bottom: 20px;"/>
 
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="2">
